@@ -275,7 +275,11 @@ window.addEventListener('keyup', (e) => {
 // ----------------------------------
 function playAudio(k) {
   k.volume = 0.5;
-  k.play().catch((e) => console.log(e));
+  // DEBUG audio (borrar luego)
+  console.log('[audio] playAudio', k.id, { src: k.currentSrc, readyState: k.readyState, muted: k.muted, volume: k.volume, error: k.error });
+  k.play()
+    .then(() => console.log('[audio] sonando', k.id, 'duración:', k.duration))
+    .catch((e) => console.log('[audio] ERROR', k.id, e));
 }
 
 function pauseAudio(k) {
